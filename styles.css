@@ -127,16 +127,31 @@ a {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--white);
+    display: flex;
+    align-items: center;
+    height: 50px;
 }
 
-.logo-text {
-    background: linear-gradient(135deg, var(--white), var(--gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.logo-link {
+    display: flex;
+    align-items: center;
+    transition: var(--transition-normal);
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.logo-img {
+    height: 45px;
+    width: auto;
+    max-width: 200px;
+    transition: var(--transition-normal);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.logo-img:hover {
+    filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.4));
 }
 
 .nav-menu {
@@ -1016,6 +1031,11 @@ section {
     :root {
         --spacing-xl: 3rem;
         --spacing-lg: 2rem;
+    }
+
+    .logo-img {
+        height: 35px;
+        max-width: 150px;
     }
 
     .hero-trust {
