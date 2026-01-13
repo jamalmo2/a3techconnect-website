@@ -130,29 +130,24 @@ a {
     display: flex;
     align-items: center;
     height: 50px;
+    padding-left: 24px;
 }
 
 .logo-link {
     display: flex;
     align-items: center;
-    transition: var(--transition-normal);
+    transition: opacity var(--transition-normal);
 }
 
 .logo-link:hover {
-    transform: scale(1.05);
+    opacity: 0.8;
 }
 
 .logo-img {
-    height: 50px;
+    height: 48px;
     width: auto;
-    max-width: 250px;
-    transition: var(--transition-normal);
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-
-.logo-img:hover {
-    filter: drop-shadow(0 4px 8px rgba(244, 162, 97, 0.5));
-    transform: scale(1.02);
+    transition: opacity var(--transition-normal);
+    object-fit: contain;
 }
 
 .nav-menu {
@@ -1329,8 +1324,12 @@ section {
     }
 
     .logo-img {
-        height: 35px;
-        max-width: 150px;
+        height: 40px;
+        width: auto;
+    }
+    
+    .logo {
+        padding-left: 16px;
     }
 
     .hero-trust {
