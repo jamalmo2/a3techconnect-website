@@ -337,6 +337,136 @@ const debouncedScrollHandler = debounce(() => {
 
 window.addEventListener('scroll', debouncedScrollHandler);
 
+// Careers Section Functionality
+const applicationModal = document.getElementById('applicationModal');
+const modalClose = document.getElementById('modalClose');
+const applyButtons = document.querySelectorAll('.apply-btn');
+const generalApplicationBtn = document.getElementById('generalApplicationBtn');
+const applicationForm = document.getElementById('applicationForm');
+const appliedPositionInput = document.getElementById('appliedPosition');
+
+// Open modal with position name
+if (applyButtons.length > 0) {
+    applyButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const position = button.getAttribute('data-position');
+            if (appliedPositionInput) {
+                appliedPositionInput.value = position;
+            }
+            if (applicationModal) {
+                applicationModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+}
+
+// General application button
+if (generalApplicationBtn) {
+    generalApplicationBtn.addEventListener('click', () => {
+        if (appliedPositionInput) {
+            appliedPositionInput.value = 'General Application';
+        }
+        if (applicationModal) {
+            applicationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+}
+
+// Close modal
+if (modalClose) {
+    modalClose.addEventListener('click', () => {
+        if (applicationModal) {
+            applicationModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// Close modal when clicking outside
+if (applicationModal) {
+    applicationModal.addEventListener('click', (e) => {
+        if (e.target === applicationModal) {
+            applicationModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// Application form handling
+if (applicationForm) {
+    applicationForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(applicationForm);
+        const data = Object.fromEntries(formData);
+        
+        // Basic validation
+        if (!data.name || !data.email || !data.phone || !data.coverLetter) {
+            showNotification('Please fill in all required fields.', 'error');
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+            showNotification('Please enter a valid email address.', 'error');
+            return;
+        }
+        
+        // File validation
+        const resumeInput = document.getElementById('appResume');
+        if (!resumeInput || !resumeInput.files || resumeInput.files.length === 0) {
+            showNotification('Please upload your resume.', 'error');
+            return;
+        }
+        
+        const file = resumeInput.files[0];
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        if (file.size > maxSize) {
+            showNotification('Resume file size must be less than 5MB.', 'error');
+            return;
+        }
+        
+        // Show loading state
+        const submitButton = applicationForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Submitting...';
+        submitButton.disabled = true;
+        
+        try {
+            // TODO: Replace with your actual application submission endpoint
+            // Example: await fetch('/api/application', { method: 'POST', body: formData })
+            
+            // Simulate API call (remove this in production)
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Success
+            showNotification('Thank you! Your application has been submitted. We\'ll review it and get back to you soon.', 'success');
+            applicationForm.reset();
+            if (applicationModal) {
+                applicationModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Log application data (remove in production, replace with actual API call)
+            console.log('Application submitted:', {
+                ...data,
+                resumeFileName: file.name,
+                resumeFileSize: file.size
+            });
+            
+        } catch (error) {
+            showNotification('Something went wrong. Please try again or email us directly.', 'error');
+            console.error('Application submission error:', error);
+        } finally {
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }
+    });
+}
+
 // Console welcome message
 console.log('%cA3 Tech Connect', 'color: #d4af37; font-size: 24px; font-weight: bold;');
 console.log('%cEnterprise Technology Transformation | Dubai, UAE', 'color: #2d5aa0; font-size: 14px;');
