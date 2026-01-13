@@ -47,7 +47,7 @@ Then navigate to `http://localhost:8000`
 
 1. **Update Contact Information**:
    - Edit `index.html` and replace placeholder contact details:
-     - Email: `a2techsolution@a3techconnect.com`
+     - Email: `a3techsolution@a3techconnect.com`
      - Phone: `+971 XX XXX XXXX`
      - LinkedIn profile URL
      - Dubai office address
