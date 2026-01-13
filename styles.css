@@ -148,8 +148,8 @@ a {
     width: auto;
     transition: opacity var(--transition-normal);
     object-fit: contain;
-    filter: brightness(1.5) contrast(1.3) drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3));
-    /* Enhanced visibility on dark navbar background */
+    filter: brightness(0) invert(1);
+    /* Make logo white for better visibility on dark background */
 }
 
 .nav-menu {
