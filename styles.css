@@ -143,15 +143,16 @@ a {
 }
 
 .logo-img {
-    height: 45px;
+    height: 50px;
     width: auto;
-    max-width: 200px;
+    max-width: 250px;
     transition: var(--transition-normal);
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .logo-img:hover {
-    filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.4));
+    filter: drop-shadow(0 4px 8px rgba(244, 162, 97, 0.5));
+    transform: scale(1.02);
 }
 
 .nav-menu {
